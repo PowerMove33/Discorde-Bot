@@ -24,10 +24,9 @@ try:
     with open("engagements.json", "r") as file:
         engagements = json.load(file)
 except FileNotFoundError:
+    with open("engagements.json", "w") as file:
+        json.dump({}, file)
     engagements = {}
-with open("engagements.json", "w") as file:
-json.dump({}, file)
-
 # 🔧 Définition des permissions
 
 intents = discord.Intents.default()
