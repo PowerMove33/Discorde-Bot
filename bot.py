@@ -21,8 +21,8 @@ EMOJI_POWER_ELITE = "⚔️"
 # 📂 Chargement des données d'engagement
 
 try:
-with open("engagements.json", "r") as file:
-engagements = json.load(file)
+    with open("engagements.json", "r") as file:
+        engagements = json.load(file)
 except FileNotFoundError:
 engagements = {}
 with open("engagements.json", "w") as file:
