@@ -24,7 +24,7 @@ try:
     with open("engagements.json", "r") as file:
         engagements = json.load(file)
 except FileNotFoundError:
-engagements = {}
+    engagements = {}
 with open("engagements.json", "w") as file:
 json.dump({}, file)
 
