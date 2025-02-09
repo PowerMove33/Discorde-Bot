@@ -5,16 +5,16 @@ import asyncio
 
 # 🛠️ Configuration
 
-TOKEN = "TON_TOKEN_ICI"  # Mets le token de ton bot
-GUILD_ID = 123456789012345678  # ID du serveur
-OBJECTIVE_CHANNEL_ID = 123456789012345678  # ID du salon où les membres s'engagent avec ⚔️
-VALIDATION_CHANNEL_ID = 123456789012345678  # ID du salon où ils valident avec ✅
+TOKEN = "TON_TOKEN_ICI"  # Remplace par ton vrai token
+GUILD_ID = 123456789012345678  # Remplace par l'ID de ton serveur
+OBJECTIVE_CHANNEL_ID = 123456789012345678  # ID du salon d'engagement
+VALIDATION_CHANNEL_ID = 123456789012345678  # ID du salon de validation
 POWER_ELITE_CHANNEL_ID = 123456789012345678  # ID du salon privé des Power Élite
 ROLE_POWER_GUERRIER = 123456789012345678  # ID du rôle Power Guerrier
 ROLE_POWER_ELITE = 123456789012345678  # ID du rôle Power Élite
 
-ENGAGEMENT_EMOJI = "⚔️"  # Emoji pour l'engagement
-VALIDATION_EMOJI = "✅"  # Emoji pour la validation
+ENGAGEMENT_EMOJI = "⚔️"  # Emoji engagement
+VALIDATION_EMOJI = "✅"  # Emoji validation
 EMOJI_POWER_GUERRIER = "🛡️"
 EMOJI_POWER_ELITE = "⚔️"
 
@@ -25,11 +25,13 @@ with open("engagements.json", "r") as file:
 engagements = json.load(file)
 except FileNotFoundError:
 engagements = {}
+with open("engagements.json", "w") as file:
+json.dump({}, file)
 
 # 🔧 Définition des permissions
 
 intents = discord.Intents.default()
-intents.messages = True
+intents.message_content = True  # Activation de la lecture des messages
 intents.reactions = True
 intents.guilds = True
 intents.members = True
@@ -55,6 +57,7 @@ engagements[str([member.id](http://member.id/))] = {"weeks_validated": 0, "engag
 else:
 engagements[str([member.id](http://member.id/))]["engaged"] = True
 save_engagements()
+await member.send(f"✅ Tu t'es engagé(e) pour cette semaine dans {[guild.name](http://guild.name/)} !")
 
 # 📌 Événement : validation des objectifs (✅)
 
@@ -102,3 +105,8 @@ send_weekly_objective.start()
 # 🚀 Lancement du bot
 
 bot.run(TOKEN)
+
+
+
+
+       
